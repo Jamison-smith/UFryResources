@@ -27,5 +27,21 @@
   </video>
 
   <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+  <script>
+    var player = videojs();
+
+player.on('load', function() {
+
+  // Modals are temporary by default. They dispose themselves when they are
+  // closed; so, we can create a new one each time the player is paused and
+  // not worry about leaving extra nodes hanging around.
+  var modal = player.createModal('THIS VIDEO IS FOR 13+ AUDIENCES ONLY');
+
+  // When the modal closes, resume playback.
+  modal.on('modalclose', function() {
+    player.play();
+  });
+});
+  </script>
 </body>
 </html>
